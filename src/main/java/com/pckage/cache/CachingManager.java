@@ -56,7 +56,8 @@ public final class CachingManager {
 	public int store(String key, Object value) {
 		if (key == null)
 			throw new NullPointerException("Key cannot be null");
-
+		if(value==null)
+			throw new NullPointerException("Value cannot be null");
 		CACHE.addElement(key, new CachedElement(value));
 		return 1;
 	}
@@ -69,7 +70,7 @@ public final class CachingManager {
 	 *            as string as an identifier for the stored object in cache, not be
 	 *            null
 	 * @param value
-	 *            as object to be stored in cache
+	 *            as object to be stored in cache, cannot be null
 	 * @param timeToLive
 	 *            for how much time is seconds object will be stored in cache, if
 	 *            value is zero then object will be store for indefinite period of
@@ -79,6 +80,8 @@ public final class CachingManager {
 	public int store(String key, Object value, long timeToLive) {
 		if (key == null)
 			throw new NullPointerException("Key cannot be null");
+		if(value==null)
+			throw new NullPointerException("Value cannot be null");
 		CACHE.addElement(key, new CachedElement(value, timeToLive));
 		return 1;
 	}
